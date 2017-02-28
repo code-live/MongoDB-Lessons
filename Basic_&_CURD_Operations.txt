@@ -1,0 +1,107 @@
+> show dbs -------------------
+aiapp-dev        0.078GB
+crunchbase       0.203GB
+local            0.078GB
+m101             0.078GB
+myapp            0.078GB
+referralapp-dev  0.078GB
+social           0.078GB
+test             0.078GB
+video            0.078GB
+
+> show collections ----------------
+agendaJobs
+mycol
+mycollection
+restaurants
+shows
+system.indexes
+test
+users
+
+-------------Create collection-----------
+db.createCollection('customer')
+
+> use users ------- Switch to different dbs
+switched to db users
+
+
+------------------------Switch to db, show it's collections and using find & pretty method see all data----
+> use myapp
+switched to db myapp
+> show collections
+system.indexes
+users
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("5635d1ef3ef383f00c8ce55b"),
+        "local" : {
+                "password" : "vp",
+                "username" : "vp"
+        },
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("5635d2ec8d2d46d4131c5b23"),
+        "local" : {
+                "password" : "123",
+                "username" : "vpp"
+        },
+        "__v" : 0
+}
+>
+
+--------------------Insert Data in collections----------------
+> db.users.insert({"password":"Test","username":"test"})
+WriteResult({ "nInserted" : 1 })
+> db.users.find().pretty()
+{
+        "_id" : ObjectId("5635d1ef3ef383f00c8ce55b"),
+        "local" : {
+                "password" : "vp",
+                "username" : "vp"
+        },
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("5635d2ec8d2d46d4131c5b23"),
+        "local" : {
+                "password" : "123",
+                "username" : "vpp"
+        },
+        "__v" : 0
+}
+{
+        "_id" : ObjectId("58b5b30783be678aa6356cdf"),
+        "password" : "Test",
+        "username" : "test"
+}
+>
+
+---------------------Drop collections---------------
+db.users.drop();
+
+---------------------InsertOne Command ------------
+> db.users.insertOne({"password":"Test","username":"test"});
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("58b5b38683be678aa6356ce0")
+}
+
+---------------------InsertOne Many ------------
+> db.users.insertOne([{"password":"Test","username":"test"},{}]);
+
+In Insert manyy command we can pass objects in array, these will run and enter all array objjects in DB.It will return as many objects as array has key.
+
+We have other options also in InsertMany command :
+
+* by default insert Manyy run in order manner.So what ever comes first we enter in 1St.As soon it encounter any error it will stop execution.
+
+> db.users.insertOne([{"password":"Test","username":"test"},{}],{
+	"ordered": false // if ordered is false then it will not stop execution on error, it will enter other correct 	
+						values.
+});
+
+
+curd OPRATIONS IN mongodb :
+
