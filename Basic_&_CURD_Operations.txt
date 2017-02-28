@@ -102,6 +102,16 @@ We have other options also in InsertMany command :
 						values.
 });
 
+-------------------ID-------------------
+mongoDB provide unique id for each collections document.it's create unique thing to retrieve data from database.
+
+ObbjectID : it is a value type and defined in BSon way.
+			all are 12 byte hex strings
+			1st-4 time stamp 
+			next-3 machine addr(mac add)
+			next-2 process id
+			last-3 counter to make it unique
+
 
 curd OPRATIONS IN mongodb :
 

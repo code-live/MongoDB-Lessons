@@ -1,0 +1,23 @@
+---------------passsing query object in find function-------------
+
+db.movieDetails.find({rated:"PG-13"}).pretty() // it will check moviesDetails obbjcet key rated and whoever has 	
+												PG-13 rating it will print them
+
+db.movieDetails.find({rated:"PG-13"}).count() // print the count of data no, only documents matching these criteria 
+												will print
+												// for passing objects key we need to enclose them in quotes.
+
+------------------Equality Matches on Arrays----------------------
+-- On the entire array
+-- Based on any element
+-- Based on specific element
+-- more complex matches
+
+---------------------On the entire array------------------
+db.movieDetails.find({"writers":["Ethen", "Coen"]}).pretty()
+
+1) order of array elements matter
+
+db.movieDetails.find({"writers": "jeff"}).pretty() // one element in array only
+
+db.movieDetails.find({"writers.0": "jeff"}).pretty() // specify the element no in array only
