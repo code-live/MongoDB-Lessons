@@ -21,3 +21,31 @@ db.movieDetails.find({"writers":["Ethen", "Coen"]}).pretty()
 db.movieDetails.find({"writers": "jeff"}).pretty() // one element in array only
 
 db.movieDetails.find({"writers.0": "jeff"}).pretty() // specify the element no in array only
+
+
+-----------------Cursors-----------------
+find menthod return cursor
+to access document, we need cursor to iterate through cursor.
+if we don't store find method return in var, then it will run and show first 20 initial set of result data.
+mongodb return result in batches.
+batch size will not exceed the maximum size of BSON documents size.
+for most queries it will return 101 documents or 1mb data size, subsequent documents will be 4mb
+to iterate we use ----it keyword------
+
+var c = db.moviedetails.find();  // store cursore in var
+var doc = function(){        	 // check if documents left or not
+	return c.hasNext() ? c.next() : null;
+}
+c.objsLeftInBtach(); 			 // it will return remaining object count
+doc()							 // it will return single document
+
+
+------------------Projection----------------------------
+it will reduce the network load thorught limiting the data feilds which are required only, other feild it will discard.
+it is 2nd argument.
+db.movieDetails.find({"writers": "jeff"},{title : 1}).pretty() // one element in array only
+
+_id will return by default. So if u don wann that then male it 0 in projection.
+db.movieDetails.find({"writers": "jeff"},{title : 1,id : 0}).pretty() // one element in array only
+to exclude feilds then we need to make it them 0.
+
