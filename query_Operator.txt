@@ -62,3 +62,19 @@ db.movieDetails.find({rated : { $ne: "UNRATED"} }).pretty()
 the value of $in must be a array. oppsite of this is $nin :)
 db.movieDetails.find({rated : { $in: ["UNRATED","G","PG"]} }).pretty()
 
+
+
+------------------------Elements Operators-------------------------
+
+$exists : check weather key is exists or not in document
+
+$type : select document field for sepcific type.
+
+for data cleaning we can use this.or to get to know what kind of field is this.
+
+db.movieDetails.find({"tomato.meter" : { $exists: true} }).pretty()
+
+db.movieDetails.find({"_id" : { $type: "string"} }).pretty()
+
+
+
