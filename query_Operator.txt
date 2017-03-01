@@ -98,3 +98,13 @@ db.movieDetails.find({ $and : [{"metacritic" : { $nt: null}}, {"metacritic" : { 
 
 
 
+------------------------------RegEx expressions--------------------------
+
+match fields with string values.
+
+db.movieDetails.find({"awards.text" : { $regex: /^Won.*/}}).pretty()
+
+db.movieDetails.find({"awards.text" : { $regex: /^Won\s*/}}).pretty()
+
+
+
