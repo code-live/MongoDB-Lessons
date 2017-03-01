@@ -74,7 +74,27 @@ for data cleaning we can use this.or to get to know what kind of field is this.
 
 db.movieDetails.find({"tomato.meter" : { $exists: true} }).pretty()
 
-db.movieDetails.find({"_id" : { $type: "string"} }).pretty()
+db.movieDetails.find({"_id" : { $type: "string"} }).pretty() // it will return all document which id is string value.
+
+
+------------------------- Logical Operator---------------------------
+
+$or, $and , $not, $nor
+
+
+$or : db.movieDetails.find({ $or : [{"tomato.meter" : { $gt: 90}}, {"metacritic" : { $gt: 88}}]}).pretty()
+
+$and : db.movieDetails.find({ $and : [{"tomato.meter" : { $gt: 90}}, {"metacritic" : { $gt: 88}}]}).pretty()
+
+			---------------------these both are same-----------------
+
+		db.movieDetails.find({"tomato.meter" : { $gt: 90}}, {"metacritic" : { $gt: 88}}).pretty()
+
+then why we use $and ???????????????
+
+bcz $and give us functionality to apply constraint on same key multiple times. these the $and advantage. :D ex :-
+
+db.movieDetails.find({ $and : [{"metacritic" : { $nt: null}}, {"metacritic" : { $exists: true}}]}).pretty()
 
 
 
