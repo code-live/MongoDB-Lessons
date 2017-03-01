@@ -49,3 +49,16 @@ _id will return by default. So if u don wann that then male it 0 in projection.
 db.movieDetails.find({"writers": "jeff"},{title : 1,id : 0}).pretty() // one element in array only
 to exclude feilds then we need to make it them 0.
 
+
+----------------------Comparison Operators --------------------
+
+db.movieDetails.find({runtime : { $gt: 90 } }).pretty()
+db.movieDetails.find({runtime : { $gt: 90 , $lt: 150 } }).pretty()
+db.movieDetails.find({runtime : { $gte: 90 , $lte: 150 } }).pretty()
+db.movieDetails.find({runtime : { $gte: 90 , $lte: 150 } }, {title : 1, runtime : 1, _id : 0}).pretty()
+db.movieDetails.find({runtime : {"tomato.meter" : {$gte: 90 } , runtime : {$lte: 150 } }, {title : 1, runtime : 1, _id : 0}).pretty()
+db.movieDetails.find({rated : { $ne: "UNRATED"} }).pretty()
+
+the value of $in must be a array. oppsite of this is $nin :)
+db.movieDetails.find({rated : { $in: ["UNRATED","G","PG"]} }).pretty()
+
