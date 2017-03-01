@@ -106,5 +106,21 @@ db.movieDetails.find({"awards.text" : { $regex: /^Won.*/}}).pretty()
 
 db.movieDetails.find({"awards.text" : { $regex: /^Won\s*/}}).pretty()
 
+-----------------------Array Operators------------------------------
+
+$all - Matches array that contain all elements specified in the query.
+
+$elemMatch - selects documents if element in the array field  matches all the specified $elemMatch conditions
+			to perform query on array of documents, in which we want to apply query on more then 1 field. 
+
+$size - select doc if the array field is a specified size.
+
+db.movieDetails.find({geners :{ $all : ["c" , "v" , "d"] }}).pretty()
+
+db.movieDetails.find({countries :{ $size : 1}}).pretty()
+
+db.movieDetails.find({boxoffice : { $elemMatch : {country : "UK", revenue : {$gt : 90}}}}).pretty()
+
+
 
 
