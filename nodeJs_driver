@@ -55,3 +55,40 @@ if("overview" in options) {
 if("milestones" in options) {
 	query["milestones.sourcedestination"] = {"$regex" : options.milestones, "$options" : "i"};
 }
+
+-----------------------------------------------------------
+
+if("ipo" in options) {
+	if(options.ipo == "yes"){
+		query["ipo.valuation_amount"] = {"$exists" : true, $ne : null};
+	} else {
+		query["ipo.valuation_amount"] = null;
+	}
+}
+------------------------------------------------------------
+
+for embedded documents in array we not use dot notations.
+
+query["ipo.valuation_amount"]
+
+
+------------------------------------------------------------
+-------SkIP-------SORT-------------LIMIT---------------------
+
+SORT : just chain with ur cursor.
+cursor.sort({founded_year : 1});
+
+1 - > sort ascending order 
+-1 - > reverse order
+
+cursor.sort([[founded_year : 1][no_of_empl : -1]]);
+				1st this run		2nd this will run
+
+cursor.skip(options.skip);
+cursor.limit(options.limit);
+
+sort -> skip - > limit -----------------order in which mongodb run this cmnd
+
+------------------------------------------------------------
+----Insert   1-----------------------Insert Many------------
+
