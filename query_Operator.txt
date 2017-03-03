@@ -162,3 +162,6 @@ $push used for push doc in collection.
 db.movieDetails.find({ "genres": {$all: ["Comedy", "Crime"] } })
 
 --------------------------------------------------------------------------------------------------------------
+
+
+ db.movieDetails.find({"imdb.rating" : {$lt : 10000}, $and : [{"year" :{$gt : 2010}},{"year" : {$lt : 2013}}]},{" tomato.consensus" : { $type: "null"} }).count()

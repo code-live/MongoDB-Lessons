@@ -1,0 +1,12 @@
+mongoImport -> to import json files in mongodb database
+
+mongoimport -d crunchbase -c companies companies.json
+-----------------------------------------------------------------------
+var query = {"category_code":"biotech"};
+var projection = {"name" : 1, "category_code": 1, "_id" : 0};
+var cursor = db.collections('comapnies').find(query); // this find method is sync call
+cursor.project(projection);
+
+
+
+mongoShell  <----> mongoDB Database <------> NOde | ur code | driver
