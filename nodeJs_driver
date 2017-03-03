@@ -42,3 +42,16 @@ var query = {
 if("employee" in  options) {
 	query.number_of_employee = {"$gte" : options.employee};
 }
+
+-----------------------------------------------------------
+
+$options to specify the data with other options like in example "i" for case insensitive
+
+var query = {};
+if("overview" in options) {
+	query.overview = {"$regex" : options.overview, "$options": "i"};
+}
+
+if("milestones" in options) {
+	query["milestones.sourcedestination"] = {"$regex" : options.milestones, "$options" : "i"};
+}
