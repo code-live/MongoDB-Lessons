@@ -7,6 +7,38 @@ var projection = {"name" : 1, "category_code": 1, "_id" : 0};
 var cursor = db.collections('comapnies').find(query); // this find method is sync call
 cursor.project(projection);
 
+or 
+
+var cursor = db.collections('comapnies').find(query,projection);
 
 
 mongoShell  <----> mongoDB Database <------> NOde | ur code | driver
+
+----------------------------------Through Command Line-----------------------------------------
+
+additional node module we need to install for this command-line-args--
+
+function comandLineOptions() {
+	
+	var command = comandLineArgs([
+		{name: "firstName" , alias : "f" , type : numaber},
+	])
+
+}
+
+after this we need to parse this object
+
+var options = command.parse();
+
+---------------------query method-------------------------
+
+var query = {
+	"founded_yesr" : {
+		"$gte" : options.firstyear,
+		"$lte" : options.lastyear,
+	}
+}
+
+if("employee" in  options) {
+	query.number_of_employee = {"$gte" : options.employee};
+}
